@@ -65,20 +65,20 @@ namespace DipswTool
             ISetting curr = tgt.GetCurrentSetting("kernel:/bootparam");
             ISetting next = tgt.GetSetting("kernel:/bootparam");
 
-            if(curr.BinaryValue.Length != 32)
+            if(((dynamic)curr.BinaryValue).Length != 32)
             {
-                Console.Write("Dipsw load error : Invalid size -> " + curr.BinaryValue.Length + "\n");
+                Console.Write("Dipsw load error : Invalid size -> " + ((dynamic)curr.BinaryValue).Length + "\n");
             }
 
-            update_sdk_flags((uint)BitConverter.ToChar(curr.BinaryValue, 16) | ((uint)BitConverter.ToChar(curr.BinaryValue, 17) << 8) | ((uint)BitConverter.ToChar(curr.BinaryValue, 18) << 16) | ((uint)BitConverter.ToChar(curr.BinaryValue, 19) << 24));
-            update_SHELL((uint)BitConverter.ToChar(curr.BinaryValue, 20) | ((uint)BitConverter.ToChar(curr.BinaryValue, 21) << 8) | ((uint)BitConverter.ToChar(curr.BinaryValue, 22) << 16) | ((uint)BitConverter.ToChar(curr.BinaryValue, 23) << 24));
-            update_debug_ctrl((uint)BitConverter.ToChar(curr.BinaryValue, 24) | ((uint)BitConverter.ToChar(curr.BinaryValue, 25) << 8) | ((uint)BitConverter.ToChar(curr.BinaryValue, 26) << 16) | ((uint)BitConverter.ToChar(curr.BinaryValue, 27) << 24));
+            update_sdk_flags((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 16) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 17) << 8) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 18) << 16) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 19) << 24));
+            update_SHELL((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 20) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 21) << 8) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 22) << 16) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 23) << 24));
+            update_debug_ctrl((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 24) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 25) << 8) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 26) << 16) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 27) << 24));
             update_system_ctrl(
-                (uint)curr.BinaryValue[28] | ((uint)curr.BinaryValue[29] << 8) | ((uint)curr.BinaryValue[30] << 16) | ((uint)curr.BinaryValue[31] << 24)
+                (uint)((dynamic)curr.BinaryValue)[28] | ((uint)((dynamic)curr.BinaryValue)[29] << 8) | ((uint)((dynamic)curr.BinaryValue)[30] << 16) | ((uint)((dynamic)curr.BinaryValue)[31] << 24)
             );
 
 
-            uint cp_rtc = (uint)BitConverter.ToChar(curr.BinaryValue, 0) | ((uint)BitConverter.ToChar(curr.BinaryValue, 1) << 8) | ((uint)BitConverter.ToChar(curr.BinaryValue, 2) << 16) | ((uint)BitConverter.ToChar(curr.BinaryValue, 3) << 24);
+            uint cp_rtc = (uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 0) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 1) << 8) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 2) << 16) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 3) << 24);
             var cp_date = DateTimeOffset.FromUnixTimeSeconds((long)cp_rtc);
             Console.Write("CP RTC (0) : " + cp_rtc + " -> " + cp_date.ToString() + "\n");
             this.dateTimePicker1.Value = DateTime.Parse(cp_date.Year.ToString() + "/" + cp_date.Month.ToString() + "/" + cp_date.Day.ToString());
@@ -86,7 +86,7 @@ namespace DipswTool
             this.numericUpDown2.Value = cp_date.Minute;
             this.numericUpDown3.Value = cp_date.Second;
 
-            cp_rtc = (uint)BitConverter.ToChar(curr.BinaryValue, 8) | ((uint)BitConverter.ToChar(curr.BinaryValue, 9) << 8) | ((uint)BitConverter.ToChar(curr.BinaryValue, 10) << 16) | ((uint)BitConverter.ToChar(curr.BinaryValue, 11) << 24);
+            cp_rtc = (uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 8) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 9) << 8) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 10) << 16) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 11) << 24);
             cp_date = DateTimeOffset.FromUnixTimeSeconds((long)cp_rtc);
             Console.Write("CP RTC (1) : " + cp_rtc + " -> " + cp_date.ToString() + "\n");
             this.dateTimePicker2.Value = DateTime.Parse(cp_date.Year.ToString() + "/" + cp_date.Month.ToString() + "/" + cp_date.Day.ToString());
@@ -94,8 +94,8 @@ namespace DipswTool
             this.numericUpDown5.Value = cp_date.Minute;
             this.numericUpDown6.Value = cp_date.Second;
 
-            board_info = (uint)BitConverter.ToChar(curr.BinaryValue, 4) | ((uint)BitConverter.ToChar(curr.BinaryValue, 5) << 8) | ((uint)BitConverter.ToChar(curr.BinaryValue, 6) << 16) | ((uint)BitConverter.ToChar(curr.BinaryValue, 7) << 24);
-            dipsw_ASLR.Value = (uint)BitConverter.ToChar(curr.BinaryValue, 12) | ((uint)BitConverter.ToChar(curr.BinaryValue, 13) << 8) | ((uint)BitConverter.ToChar(curr.BinaryValue, 14) << 16) | ((uint)BitConverter.ToChar(curr.BinaryValue, 15) << 24);
+            board_info = (uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 4) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 5) << 8) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 6) << 16) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 7) << 24);
+            dipsw_ASLR.Value = (uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 12) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 13) << 8) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 14) << 16) | ((uint)BitConverter.ToChar(((dynamic)curr.BinaryValue), 15) << 24);
 
             Console.Write("    board info " + board_info.ToString("X8") + "\n");
             Console.Write("          ASLR " + ((long)this.dipsw_ASLR.Value).ToString("X8") + "\n");

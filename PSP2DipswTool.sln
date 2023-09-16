@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSP2DipswTool", "PSP2DipswTool\PSP2DipswTool.csproj", "{AB65E043-CAEF-427D-AD0B-9F4C50A66472}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSP2DipswTool", "PSP2DipswTool\PSP2DipswTool.csproj", "{AB65E043-CAEF-427D-AD0B-9F4C50A66472}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
